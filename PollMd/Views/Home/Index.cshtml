@@ -4,5 +4,11 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form action="/Home/Divide" method="post">
+        <input style="width:50px" type="number" id="val1" name="val1"/> /
+        <input style="width:50px" type="number" id="val2" name="val2"/>
+        <input type="submit" />
+    </form>
+
+    <p>@TempData["CalcResult"]</p>
 </div>

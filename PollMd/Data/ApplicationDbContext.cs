@@ -11,5 +11,6 @@ namespace PollMd.Data
         {
         }
         public DbSet<PollMd.Models.Question> Question { get; set; }
+        public DbSet<PollMd.Models.Answer> Answer { get; set; }
     }
 }

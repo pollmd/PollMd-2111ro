@@ -24,10 +24,37 @@ namespace PollMd.Controllers
             return View();
         }
 
+        public IActionResult Divide(int val1, int val2)
+        {
+            try
+            {
+                if(val2==0)
+                    throw new MyException(val1, val2);
+
+                TempData["CalcResult"] = val1 / val2;
+
+            }
+            catch (DivideByZeroException e)
+            {
+                TempData["CalcResult"] = "Împartirea la 0 nu este posibila";
+            }
+            catch (Exception e)
+            {
+                TempData["CalcResult"] = e.Message;
+            }
+
+            return Redirect("/Home/Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    }
+
+    class MyException : Exception
+    {
+        public MyException(int val1,int val2):base($"Impartirea {val1}/{val2} nu este posibila"){}
     }
 }

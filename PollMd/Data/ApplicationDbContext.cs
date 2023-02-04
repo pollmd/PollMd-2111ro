@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PollMd.Models;
 
 namespace PollMd.Data
 {
@@ -9,5 +10,6 @@ namespace PollMd.Data
             : base(options)
         {
         }
+        public DbSet<PollMd.Models.Question> Question { get; set; }
     }
 }

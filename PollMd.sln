@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollMd", "PollMd\PollMd.csproj", "{0B7674F0-29E9-4E1D-8C62-4E206A24B10C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PollMd", "PollMd\PollMd.csproj", "{0B7674F0-29E9-4E1D-8C62-4E206A24B10C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{E47A7CB2-34BD-432C-8FF2-4ADC0D7CCA3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0B7674F0-29E9-4E1D-8C62-4E206A24B10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B7674F0-29E9-4E1D-8C62-4E206A24B10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B7674F0-29E9-4E1D-8C62-4E206A24B10C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E47A7CB2-34BD-432C-8FF2-4ADC0D7CCA3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E47A7CB2-34BD-432C-8FF2-4ADC0D7CCA3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E47A7CB2-34BD-432C-8FF2-4ADC0D7CCA3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E47A7CB2-34BD-432C-8FF2-4ADC0D7CCA3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

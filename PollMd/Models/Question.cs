@@ -9,5 +9,7 @@ namespace PollMd.Models
         public DateTime CreationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string UserId { get; set; }
+        public int Type { get; set; }
+        public int? ExamId { get; set; }
     }
 }

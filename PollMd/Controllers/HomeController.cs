@@ -24,6 +24,11 @@ namespace PollMd.Controllers
             return View();
         }
 
+        public IActionResult Exams()
+        {
+            return View(new List<Exam>());
+        }
+
         public IActionResult Divide(int val1, int val2)
         {
             try

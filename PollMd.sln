@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaNDelegates", "LambdaN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{65384A3E-435F-4EF3-A665-CEE85375404C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OopConcepts", "OopConcepts\OopConcepts.csproj", "{CFF9A2CB-2784-4269-BFCE-A9886399AE08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OopConcepts", "OopConcepts\OopConcepts.csproj", "{CFF9A2CB-2784-4269-BFCE-A9886399AE08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbFirst", "DbFirst\DbFirst.csproj", "{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CFF9A2CB-2784-4269-BFCE-A9886399AE08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFF9A2CB-2784-4269-BFCE-A9886399AE08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFF9A2CB-2784-4269-BFCE-A9886399AE08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

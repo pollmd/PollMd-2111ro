@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OopConcepts", "OopConcepts\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbFirst", "DbFirst\DbFirst.csproj", "{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbFirstMvc", "DbFirstMvc\DbFirstMvc.csproj", "{66DD68E4-8A98-4D8E-8D58-A3B45F607B01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE2828B4-6BE3-4D15-9875-6A0D31BEE217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66DD68E4-8A98-4D8E-8D58-A3B45F607B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66DD68E4-8A98-4D8E-8D58-A3B45F607B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66DD68E4-8A98-4D8E-8D58-A3B45F607B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66DD68E4-8A98-4D8E-8D58-A3B45F607B01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

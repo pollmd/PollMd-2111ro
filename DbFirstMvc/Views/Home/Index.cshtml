@@ -1,0 +1,11 @@
+﻿@model Comment
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@Model.Text
+
+<form action="/Home/FormRedirect" method="post">
+    <input type="submit" />
+</form>

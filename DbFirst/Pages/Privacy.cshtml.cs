@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DbFirst.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace DbFirst.Pages
 {
@@ -14,6 +16,7 @@ namespace DbFirst.Pages
 
         public void OnGet()
         {
+          //  var blogContext = _context.Comments.Include(c => c.Article);
         }
     }
 }

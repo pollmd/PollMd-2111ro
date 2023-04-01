@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PollMd.Models.ViewModels.UserWithRoles>
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Administrarea userilor</h1>
+
+<div class="row">
+@foreach(var item in Model){
+    <div class="col-md-3">@item.UserName</div>
+    <div class="col-md-3">
+            @foreach(var role in item.Roles)
+            {
+                <span style="background-color:coral; color:white; padding-left:5px; padding-right:5px">@role <a>x</a></span>
+            }
+        </div>
+        <div class="col-md-3">
+@*        <select id="role"+item.Id onchange="setUserRole(@item.Id)" class="btn btn-secondary btn-sm" asp-items="ViewBag.Roles"></select>*@
+@Html.DropDownList("Role"+item.Id, (IEnumerable<SelectListItem>)ViewBag.Roles, new { @class = "btn dropdown-toggle"})
+        </div>
+        <div class="col-md-3">
+        <button onclick="setUserRole('@item.Id')">+</button>
+        </div>
+}
+</div>
+
+<script>
+function setUserRole(userId) {
+            var xhr = new XMLHttpRequest();
+            var e = document.getElementById("Role"+userId);
+            var role = e.options[e.selectedIndex].text;
+            xhr.open("POST", "/Admin/SetUserRole");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("userId=" + userId + "&role=" + role);
+} 
+
+</script>
+

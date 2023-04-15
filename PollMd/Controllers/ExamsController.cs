@@ -13,16 +13,20 @@ namespace PollMd.Controllers
     public class ExamsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICompanyRepository _repo;
 
-        public ExamsController(ApplicationDbContext context)
+        public ExamsController(ApplicationDbContext context, ICompanyRepository repo)
         {
             _context = context;
+            _repo = repo;
         }
 
         // GET: Exams
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Exam.ToListAsync());
+            var result = _repo.GetExams().ToList();
+
+            return View(result);
         }
 
         // GET: Exams/Details/5

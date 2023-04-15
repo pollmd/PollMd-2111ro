@@ -12,6 +12,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

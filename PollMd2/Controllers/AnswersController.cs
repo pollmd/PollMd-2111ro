@@ -1,6 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PollMd2.Data;
+using PollMd2.Models;
 
 namespace PollMd2.Controllers
 {
@@ -8,36 +14,111 @@ namespace PollMd2.Controllers
     [ApiController]
     public class AnswersController : ControllerBase
     {
-        // GET: api/<ValuesController>
+        private readonly pollmdContext _context;
+
+        public AnswersController(pollmdContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/Answers
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<Answer>>> GetAnswers()
         {
-            return new string[] { "value1", "value2" };
+          if (_context.Answers == null)
+          {
+              return NotFound();
+          }
+            return await _context.Answers.ToListAsync();
         }
 
-        // GET api/<ValuesController>/5
+        // GET: api/Answers/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Answer>> GetAnswer(int id)
         {
-            return "value";
+          if (_context.Answers == null)
+          {
+              return NotFound();
+          }
+            var answer = await _context.Answers.FindAsync(id);
+
+            if (answer == null)
+            {
+                return NotFound();
+            }
+
+            return answer;
         }
 
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ValuesController>/5
+        // PUT: api/Answers/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> PutAnswer(int id, Answer answer)
         {
+            if (id != answer.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(answer).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AnswerExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // POST: api/Answers
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Answer>> PostAnswer(Answer answer)
         {
+          if (_context.Answers == null)
+          {
+              return Problem("Entity set 'pollmdContext.Answers'  is null.");
+          }
+            _context.Answers.Add(answer);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetAnswer", new { id = answer.Id }, answer);
+        }
+
+        // DELETE: api/Answers/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAnswer(int id)
+        {
+            if (_context.Answers == null)
+            {
+                return NotFound();
+            }
+            var answer = await _context.Answers.FindAsync(id);
+            if (answer == null)
+            {
+                return NotFound();
+            }
+
+            _context.Answers.Remove(answer);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool AnswerExists(int id)
+        {
+            return (_context.Answers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

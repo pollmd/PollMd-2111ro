@@ -12,5 +12,6 @@ namespace PollMd2.Models
         public string UserId { get; set; } = null!;
         public int? ExamId { get; set; }
         public int Type { get; set; }
+        public IEnumerable<Answer>? Answers { get; set; }
     }
 }

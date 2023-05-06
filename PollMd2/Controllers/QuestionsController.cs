@@ -116,6 +116,30 @@ namespace PollMd2.Controllers
             return NoContent();
         }
 
+        // GET: api/Questions
+        [Route("QuestionWithAnswers")]
+        [Route("QuestionWithAnswers/{id}")]
+        [HttpGet]
+        public ActionResult<Question> QuestionWithAnswers(int? id)
+        {
+            if (_context.Questions == null)
+            {
+                return NotFound();
+            }
+
+            var result = (id != null)?
+                _context.Questions.FirstOrDefault(x => x.Id == id):
+                _context.Questions.OrderBy(x=>x.Id).LastOrDefault();
+            
+            if (result != null)
+            {
+                var answers = _context.Answers.Where(x => x.QuestionId == id).ToList();
+                result.Answers = answers;
+            }
+
+            return result;
+        }
+
         private bool QuestionExists(int id)
         {
             return (_context.Questions?.Any(e => e.Id == id)).GetValueOrDefault();

@@ -1,5 +1,4 @@
 ﻿using PollMd.Models;
-using System.Linq;
 using Dapper;
 
 namespace PollMd.Data

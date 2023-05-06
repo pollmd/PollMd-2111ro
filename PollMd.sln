@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbFirstMvc", "DbFirstMvc\Db
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLID", "SOLID\SOLID.csproj", "{A1B4B9F2-F7A6-46A5-9F5B-17DC48A8067F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollMd2", "PollMd2\PollMd2.csproj", "{CAB591C8-106D-4DF3-B88D-F06FE6D24BC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A1B4B9F2-F7A6-46A5-9F5B-17DC48A8067F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B4B9F2-F7A6-46A5-9F5B-17DC48A8067F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1B4B9F2-F7A6-46A5-9F5B-17DC48A8067F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB591C8-106D-4DF3-B88D-F06FE6D24BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB591C8-106D-4DF3-B88D-F06FE6D24BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB591C8-106D-4DF3-B88D-F06FE6D24BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB591C8-106D-4DF3-B88D-F06FE6D24BC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

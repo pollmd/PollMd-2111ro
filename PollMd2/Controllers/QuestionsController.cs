@@ -10,7 +10,7 @@ using PollMd2.Models;
 
 namespace PollMd2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class QuestionsController : ControllerBase
     {
@@ -23,31 +23,24 @@ namespace PollMd2.Controllers
 
         // GET: api/Questions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Question>>> GetQuestions()
+        public ActionResult<Question> Get(int? id)
         {
-          if (_context.Questions == null)
-          {
-              return NotFound();
-          }
-            return await _context.Questions.ToListAsync();
-        }
-
-        // GET: api/Questions/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Question>> GetQuestion(int id)
-        {
-          if (_context.Questions == null)
-          {
-              return NotFound();
-          }
-            var question = await _context.Questions.FindAsync(id);
-
-            if (question == null)
+            if (_context.Questions == null)
             {
                 return NotFound();
             }
 
-            return question;
+            var result = (id != null) ?
+                _context.Questions.FirstOrDefault(x => x.Id == id) :
+                _context.Questions.OrderBy(x => x.Id).LastOrDefault();
+
+            if (result != null)
+            {
+                var answers = _context.Answers.Where(x => x.QuestionId == id).ToList();
+                result.Answers = answers;
+            }
+
+            return result;
         }
 
         // PUT: api/Questions/5

@@ -1,59 +1,46 @@
 import React, { Component } from 'react';
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+export class Poll extends Component {
+  static displayName = Poll.name;
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { polls: [], loading: true };
   }
 
   componentDidMount() {
     this.populatePollData();
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderPollsForm(polls) {
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        <div>
+            <h1>{polls.text}</h1>
+            <form action="" method="POST">
+            {polls.answers.map(poll =>
+                <div><input type="radio" /><span>{poll.text}</span></div>
+                )}
+                <input type="submit"/>
+            </form>
+        </div>
     );
   }
 
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+        : Poll.renderPollsForm(this.state.polls);
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
     );
   }
 
     async populatePollData() {
-        const response = await fetch('api/questions/QuestionWithAnswers/');
-    const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
+        const response = await fetch('questions?id=1');
+        const data = await response.json();
+        this.setState({ polls: data, loading: false });
   }
 }

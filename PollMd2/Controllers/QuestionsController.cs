@@ -43,6 +43,13 @@ namespace PollMd2.Controllers
             return result;
         }
 
+        [HttpPost]
+        [Route("Vote")]
+        public void Vote(int? value)
+        {
+            _ = 0;
+        }
+
         // PUT: api/Questions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

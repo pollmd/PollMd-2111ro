@@ -18,7 +18,7 @@ export class Poll extends Component {
             <h1>{polls.text}</h1>
             <form action="questions/vote" method="POST">
             {polls.answers.map(poll =>
-                <div><input type="radio" value={ poll.id } name="polloptions"/>
+                <div key={poll.id}><input type="radio" id={poll.id} value={ poll.id } name="polloptions"/>
                     <label>{poll.text}</label></div>
                 )}
                 <input type="submit"/>

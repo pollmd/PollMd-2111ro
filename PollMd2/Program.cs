@@ -8,6 +8,7 @@ builder.Services.AddDbContext<pollmdContext>(options =>
     options.UseSqlServer("Server=ASPOSE\\SQLEXPRESS;Database=pollmd;Trusted_Connection=True;"));
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -26,6 +27,12 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.Run();

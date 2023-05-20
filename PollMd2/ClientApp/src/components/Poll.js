@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 export class Poll extends Component {
   static displayName = Poll.name;
@@ -18,8 +19,11 @@ export class Poll extends Component {
             <h1>{polls.text}</h1>
             <form action="questions/vote" method="POST">
             {polls.answers.map(poll =>
-                <div key={poll.id}><input type="radio" id={poll.id} value={ poll.id } name="polloptions"/>
-                    <label>{poll.text}</label></div>
+                <div key={poll.id}>
+                    <input type="radio" value={poll.id} name="optionid" />
+                    <label>{poll.text}</label>
+                    <ProgressBar striped variant="info" now={20} />
+                </div>
                 )}
                 <input type="submit"/>
             </form>

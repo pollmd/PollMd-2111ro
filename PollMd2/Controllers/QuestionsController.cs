@@ -45,7 +45,7 @@ namespace PollMd2.Controllers
 
         [HttpPost]
         [Route("Vote")]
-        public void Vote(Object id)
+        public void Vote([FromForm] int optionid)
         {
             _ = 0;
         }

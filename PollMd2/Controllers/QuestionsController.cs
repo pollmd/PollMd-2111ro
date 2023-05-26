@@ -31,23 +31,32 @@ namespace PollMd2.Controllers
             }
 
             var result = (id != null) ?
-                _context.Questions.FirstOrDefault(x => x.Id == id) :
-                _context.Questions.OrderBy(x => x.Id).LastOrDefault();
+                _context.Questions.Include("Answers").FirstOrDefault(x => x.Id == id) :
+                _context.Questions.Include("Answers").OrderBy(x => x.Id).LastOrDefault();
 
-            if (result != null)
-            {
-                var answers = _context.Answers.Where(x => x.QuestionId == id).ToList();
-                result.Answers = answers;
-            }
+            //if (result != null)
+            //{
+            //    var answers = _context.Answers.Where(x => x.QuestionId == id).ToList();
+
+            //    result.Answers = answers;
+            //}
 
             return result;
         }
 
         [HttpPost]
         [Route("Vote")]
-        public void Vote([FromForm] int optionid)
+        public async Task VoteAsync([FromForm] int optionid)
         {
-            _ = 0;
+            var vote = new Vote
+            {
+                AnswerId = optionid,
+                UserId = "no authorized",
+                CreatedOn = DateTime.Now,
+                QuestionId = _context.Answers.FirstOrDefault(x => x.Id == optionid)?.QuestionId
+            };
+            _context.Votes.Add(vote);
+            await _context.SaveChangesAsync();
         }
 
         // PUT: api/Questions/5
@@ -86,10 +95,10 @@ namespace PollMd2.Controllers
         [HttpPost]
         public async Task<ActionResult<Question>> PostQuestion(Question question)
         {
-          if (_context.Questions == null)
-          {
-              return Problem("Entity set 'pollmdContext.Questions'  is null.");
-          }
+            if (_context.Questions == null)
+            {
+                return Problem("Entity set 'pollmdContext.Questions'  is null.");
+            }
             _context.Questions.Add(question);
             await _context.SaveChangesAsync();
 
@@ -127,10 +136,10 @@ namespace PollMd2.Controllers
                 return NotFound();
             }
 
-            var result = (id != null)?
-                _context.Questions.FirstOrDefault(x => x.Id == id):
-                _context.Questions.OrderBy(x=>x.Id).LastOrDefault();
-            
+            var result = (id != null) ?
+                _context.Questions.FirstOrDefault(x => x.Id == id) :
+                _context.Questions.OrderBy(x => x.Id).LastOrDefault();
+
             if (result != null)
             {
                 var answers = _context.Answers.Where(x => x.QuestionId == id).ToList();

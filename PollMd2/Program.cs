@@ -17,8 +17,6 @@ if (!app.Environment.IsDevelopment())
 {
 }
 
-//builder.Services.AddScoped<IRepository, MemoryRepository>();
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 app.UseStaticFiles();
 app.UseRouting();
 

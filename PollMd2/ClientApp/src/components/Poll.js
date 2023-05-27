@@ -24,7 +24,8 @@ export class Poll extends Component {
                     <label>{answ.text} - <i>{ answ.votes }</i></label>
                     <ProgressBar striped variant="info" now={answ.votes} />
                 </div>
-                )}
+                  )}
+                <br />
                 <input type="submit"/>
             </form>
         </>

@@ -59,9 +59,7 @@ namespace PollMd2.Controllers
             }
 
             _context.Votes.Add(vote);
-            await _context.SaveChangesAsync();
-
-           //RedirectToPage("/Polls");
+            await _context.SaveChangesAsync();;
         }
 
         // PUT: api/Questions/5
@@ -157,6 +155,26 @@ namespace PollMd2.Controllers
         private bool QuestionExists(int id)
         {
             return (_context.Questions?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        [HttpPost]
+        [Route("AddPoll")]
+        public async Task AddPoll([FromForm] string questiontext, [FromForm] string option1, [FromForm] string option2, [FromForm] string option3)
+        {
+            var question = new Question
+            {
+                Text = questiontext,
+                UserId = "no authorized",
+                CreationDate = DateTime.Now,
+                Answers = new List<Answer> { 
+                    new Answer() { Text = option1, Votes=0 },
+                    new Answer() { Text = option2, Votes=0 },
+                    new Answer() { Text = option3, Votes=0 },
+                }
+            };
+
+            _context.Questions.Add(question);
+            await _context.SaveChangesAsync(); ;
         }
     }
 }

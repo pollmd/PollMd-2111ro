@@ -5,10 +5,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<pollmdContext>(options =>
-    options.UseSqlServer("Server=ASPOSE\\SQLEXPRESS;Database=pollmd;Trusted_Connection=True;"));
+    options.UseSqlServer("Server=localhost;Database=pollmd;Trusted_Connection=True;"));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(x => 
+        x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 var app = builder.Build();
 

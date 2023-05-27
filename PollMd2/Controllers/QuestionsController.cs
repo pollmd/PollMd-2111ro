@@ -34,12 +34,6 @@ namespace PollMd2.Controllers
                 _context.Questions.Include("Answers").FirstOrDefault(x => x.Id == id) :
                 _context.Questions.Include("Answers").OrderBy(x => x.Id).LastOrDefault();
 
-            //if (result != null)
-            //{
-            //    var answers = _context.Answers.Where(x => x.QuestionId == id).ToList();
-
-            //    result.Answers = answers;
-            //}
 
             return result;
         }
@@ -55,8 +49,19 @@ namespace PollMd2.Controllers
                 CreatedOn = DateTime.Now,
                 QuestionId = _context.Answers.FirstOrDefault(x => x.Id == optionid)?.QuestionId
             };
+
+            var answer = _context.Answers.FirstOrDefault(x => x.Id == optionid);
+            if (answer != null)
+            {
+                answer.Votes++;
+                _context.Entry(answer).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+
             _context.Votes.Add(vote);
             await _context.SaveChangesAsync();
+
+           //RedirectToPage("/Polls");
         }
 
         // PUT: api/Questions/5

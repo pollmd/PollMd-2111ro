@@ -14,20 +14,20 @@ export class Poll extends Component {
   }
 
   static renderPollsForm(polls) {
-    return (
-        <div>
+      return (
+          <>
             <h1>{polls.text}</h1>
             <form action="questions/vote" method="POST">
-            {polls.answers.map(poll =>
-                <div key={poll.id}>
-                    <input type="radio" value={poll.id} name="optionid" />
-                    <label>{poll.text}</label>
-                    <ProgressBar striped variant="info" now={20} />
+            {polls.answers.map(answ =>
+                <div key={answ.id}>
+                    <input type="radio" value={answ.id} name="optionid" />
+                    <label>{answ.text} - <i>{ answ.votes }</i></label>
+                    <ProgressBar striped variant="info" now={answ.votes} />
                 </div>
                 )}
                 <input type="submit"/>
             </form>
-        </div>
+        </>
     );
   }
 

@@ -43,11 +43,12 @@ namespace PollMd2.Data
                     .IsRequired()
                     .HasDefaultValueSql("(CONVERT([bit],(0)))");
 
-                entity.HasOne(d => d.Question)
-                    .WithMany(p => p.Answers)
-                    .HasForeignKey(d => d.QuestionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Answer_Question");
+                entity.Property(e => e.Text).HasMaxLength(400);
+            });
+
+            modelBuilder.Entity<Question>(entity =>
+            {
+                entity.ToTable("Question");
             });
 
             modelBuilder.Entity<AspNetRole>(entity =>
@@ -142,35 +143,6 @@ namespace PollMd2.Data
             modelBuilder.Entity<Exam>(entity =>
             {
                 entity.ToTable("Exam");
-            });
-
-            modelBuilder.Entity<Question>(entity =>
-            {
-                entity.ToTable("Question");
-
-                entity.HasOne(d => d.Exam)
-                    .WithMany(p => p.Questions)
-                    .HasForeignKey(d => d.ExamId)
-                    .HasConstraintName("FK_Question_Exam");
-            });
-
-            modelBuilder.Entity<Vote>(entity =>
-            {
-                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
-
-                entity.Property(e => e.UserId)
-                    .HasMaxLength(450)
-                    .IsFixedLength();
-
-                entity.HasOne(d => d.Answer)
-                    .WithMany(p => p.Votes)
-                    .HasForeignKey(d => d.AnswerId)
-                    .HasConstraintName("FK_Votes_Answer");
-
-                entity.HasOne(d => d.Question)
-                    .WithMany(p => p.Votes)
-                    .HasForeignKey(d => d.QuestionId)
-                    .HasConstraintName("FK_Votes_Question");
             });
 
             OnModelCreatingPartial(modelBuilder);

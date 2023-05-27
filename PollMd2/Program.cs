@@ -4,8 +4,10 @@ using PollMd2.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<pollmdContext>(options =>
-    options.UseSqlServer("Server=localhost;Database=pollmd;Trusted_Connection=True;"));
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();

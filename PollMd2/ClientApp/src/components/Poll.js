@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { LinksGrid } from './LinksGrid';
 
 export class Poll extends Component {
   static displayName = Poll.name;
@@ -17,7 +18,8 @@ export class Poll extends Component {
       return (
           <>
             <h1>{polls.text}</h1>
-            <form action="questions/vote" method="POST">
+              <iframe id="iframep" name="iframep" style={{ display: 'none' }} ></iframe>
+            <form action="questions/vote" method="POST" target="iframep">
             {polls.answers.map(answ =>
                 <div key={answ.id}>
                     <input type="radio" value={answ.id} name="optionid" />
@@ -26,8 +28,9 @@ export class Poll extends Component {
                 </div>
                   )}
                 <br />
-                <input type="submit"/>
-            </form>
+                  <input type="submit" />
+              </form>
+              <LinksGrid/>
         </>
     );
   }
@@ -45,8 +48,11 @@ export class Poll extends Component {
   }
 
     async populatePollData() {
-        const response = await fetch('questions?id=1');
+        const params = new URLSearchParams(window.location.search);
+        let pollId = params.get("id")
+        if(pollId==null) pollId=1
+        const response = await fetch('questions?id=' + pollId);
         const data = await response.json();
         this.setState({ polls: data, loading: false });
-  }
+    }
 }

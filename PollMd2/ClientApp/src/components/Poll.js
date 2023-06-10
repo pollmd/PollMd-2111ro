@@ -23,7 +23,7 @@ export class Poll extends Component {
                 <h1>{polls.text}</h1>
                 <iframe id="iframep" name="iframep" style={{ display: 'none' }}></iframe>
                 <form action="questions/vote" method="POST" target="iframep">
-                    {polls.answers.map((answ) => (
+                    {polls.answers.map(answ =>
                         <div key={answ.id}>
                             <input type="radio" value={answ.id} name="optionid" />
                             <label>
@@ -31,7 +31,7 @@ export class Poll extends Component {
                             </label>
                             <ProgressBar striped variant="info" now={answ.votes} />
                         </div>
-                    ))}
+                    )}
                     <br />
                     <input type="submit" />
                 </form>
@@ -55,5 +55,16 @@ export class Poll extends Component {
         const data = await response.json();
         data.submittedQuestions = questionsArray; // Add the submitted questions 
         this.setState({ polls: data, loading: false });
+    }
+    render() {
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : Poll.renderPollsForm(this.state.polls);
+
+        return (
+            <div>
+                {contents}
+            </div>
+        );
     }
 }

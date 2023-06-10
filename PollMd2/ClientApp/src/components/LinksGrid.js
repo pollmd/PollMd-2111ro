@@ -27,7 +27,7 @@ export class LinksGrid extends Component {
                     User
                 </div>
                 <div class="col-md">
-                    User
+                    Creat
                 </div>
             </div>
             <div class="container">
@@ -43,7 +43,11 @@ export class LinksGrid extends Component {
                             {poll.userId}
                         </div>
                         <div class="col-md">
-                            {poll.creationDate}
+                            {new Date(poll.creationDate).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                            })}
                         </div>
                     </div>
                 )}

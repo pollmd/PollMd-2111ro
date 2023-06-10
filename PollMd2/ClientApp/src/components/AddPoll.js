@@ -41,11 +41,11 @@ export class AddPoll extends Component {
                 <form action="/poll" method="POST" onSubmit={this.handleSubmit}>
                     <textarea id="questiontext" name="questiontext" rows="4" cols="50" />
                     <br />
-                    <input type="text" id="option1" name="option1" />
+                    <input type="text" id="options[0]" name="option1" />
                     <br />
-                    <input type="text" id="option2" name="option2" />
+                    <input type="text" id="options[1]" name="option2" />
                     <br />
-                    <input type="text" id="option3" name="option3" />
+                    <input type="text" id="options[2]" name="option3" />
                     <br />
                     <input type="submit" />
                 </form>
